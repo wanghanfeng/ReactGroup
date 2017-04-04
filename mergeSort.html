@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+
+function Merge(arr,newArr,low,mid,high){
+	var i=low;
+	var j=mid+1;
+	var k=low;
+	while(i<=mid&&j<=high){
+		if(arr[i]<=arr[j]){
+			newArr[k++]=arr[i++];
+		}else{
+			newArr[k++]=arr[j++];
+		}
+	}
+	while(i<=mid){
+		newArr[k++]=arr[i++];
+	}
+	while(j<=high){
+		newArr[k++]=arr[j++];
+	}
+
+}
+function sort(arr,newArr,low,high){
+	if(low == high){
+		newArr[low]=arr[low];
+		return;
+	}else{
+		var mid=Math.floor((low+high)/2);
+	sort(arr,newArr,low,mid);
+	sort(arr,newArr,mid+1,high);
+	Merge(arr,newArr,low,mid,high);
+	}
+	
+
+}
+var arr=[49,38,65,97,76,13,27,49];
+var newArr=[];
+function main(arr){
+	
+	sort(arr,newArr,0,arr.length-1);
+	return newArr;
+}
+console.log(main(arr));
+console.log(arr);
+
+</script>
+</html>
